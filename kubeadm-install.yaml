@@ -24,7 +24,7 @@
             file:
               path: /home/ubuntu/.kube
               state: directory
-              mode: 0666
+              mode: 0755
           - name: Installing CNI network
             become: yes
             become_user: root
@@ -35,7 +35,7 @@
             shell: kubectl get pods --namespace=kube-system --kubeconfig=/home/ubuntu/.kube/config
 
           - name: listing the the nodes
-            shell: kubectl get nodes --namespace=kube-system --kubeconfig=/home/ubuntu/.kube/config
+            shell: kubectl get nodes --kubeconfig=/home/ubuntu/.kube/config
           
           - name: unitainting the master node
             shell: kubectl taint nodes --all node-role.kubernetes.io/master- --kubeconfig=/home/ubuntu/.kube/config
